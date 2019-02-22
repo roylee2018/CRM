@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <!-- spring监听器  启动tomcat加载spring容器 -->
+ 	<listener>
+ 		<listener-class>
+ 			org.springframework.web.context.ContextLoaderListener
+ 		</listener-class>
+ 	</listener>
+ 	
+ 	<!-- 监听器启动时读取spring的配置applicationContext.xml -->
+ 	<context-param>
+ 		<param-name>contextConfigLocation</param-name>
+ 		<param-value>classpath:applicationContext.xml</param-value>
+ 	</context-param>
+ 	
+ 	
+ 	<!-- Struts过滤器 -->
+ 	<filter>
+ 		<filter-name>struts2</filter-name>
+ 		<filter-class>
+ 			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+ 		</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>struts2</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	<!-- spring提供处理中文乱码的过滤器 -->
+ 	<filter>
+ 		<filter-name>encodingFilter</filter-name>
+ 		<filter-class>
+ 			org.springframework.web.filter.CharacterEncodingFilter
+ 		</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>encodingFilter</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+</web-app>

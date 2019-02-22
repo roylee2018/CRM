@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.bdqn.pojo">
+
+	<!-- 班级 -->
+	<class name="ClassInfo" table="t_class">
+		<id name="cid"  column="cid">
+			<generator class="increment"></generator>
+		</id>
+		<property name="cname" column="cname"></property>
+	</class>	
+		
+	<!-- 学生 -->
+	<class name="Student" table="t_student">
+		<id name="sid" column="sid">
+			<generator class="increment"></generator>
+		</id>
+		<property name="sname" column="sname"></property>
+		<!-- 多对一  多个学生对应同一个班级  -->
+		<many-to-one name="classInfo" class="ClassInfo" column="classId"></many-to-one>
+	</class>
+	
+</hibernate-mapping>
